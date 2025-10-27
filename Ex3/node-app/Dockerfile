@@ -16,6 +16,10 @@ COPY . .
 # Exposer le port
 EXPOSE 3000
 
+#Health Check
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s \
+ CMD curl -f http://localhost:3000/api/health || exit 1
+
 # Commande de lancement
 CMD ["npm", "start"]
 
